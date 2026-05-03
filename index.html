@@ -4,124 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thiệp Cưới Ngân & Trung</title>
-    <!-- Nhúng font chữ chuyên dụng -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Vietnamese:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Vietnamese:wght@400;700&family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
+        /* --- RESET & BASIC --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #fdfdfd; font-family: 'Noto Serif Vietnamese', serif; overflow-x: hidden; }
+        html, body { width: 100%; height: 100%; scroll-behavior: smooth; }
+        body { background: #fdfdfd; font-family: 'Noto Serif Vietnamese', serif; overflow-x: hidden; overflow-y: auto !important; }
         
-        section { 
-            min-height: 100vh; 
-            width: 100%; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            position: relative; 
-            text-align: center; 
-        }
+        section { min-height: 100vh; width: 100%; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 
-        /* --- SECTION 1: HERO (ẢNH BÌA) --- */
+        /* --- SECTION 1: HERO --- */
         .hero { 
             background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
                         url('https://w.ladicdn.com/s1000x1200/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg') no-repeat center center; 
-            background-size: cover; 
-            padding: 0;
+            background-size: cover;
         }
+        .hero-quote { position: absolute; top: 40px; width: 100%; font-family: 'Montserrat', sans-serif; font-size: 10px; color: white; line-height: 1.8; letter-spacing: 1px; font-weight: 300; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); padding: 0 20px; }
+        .hero-welcome { position: absolute; top: 120px; width: 100%; font-family: 'Montserrat', sans-serif; font-size: 24px; text-transform: lowercase; color: white; letter-spacing: 2px; }
+        .hero-married { font-family: 'Dancing Script', cursive; font-size: 65px; color: #ffecec; transform: rotate(-12deg); text-shadow: 3px 3px 10px rgba(0,0,0,0.4); z-index: 5; }
+        .hero-names { position: absolute; bottom: 110px; width: 90%; display: flex; justify-content: space-between; color: white; padding: 0 10px; }
+        .hero-names h2 { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 400; }
+        .hero-names p { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 3px; }
+        .hero-date { position: absolute; bottom: 70px; color: white; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 300; }
+        .hero-footer { position: absolute; bottom: 0; width: 100%; height: 50px; background: white; display: flex; justify-content: space-around; align-items: center; color: #333; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; }
 
-        /* 1. Đoạn thơ trên cùng */
-        .hero-quote { 
-            position: absolute; 
-            top: 40px; 
-            width: 100%; 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 10px; 
-            color: white; 
-            line-height: 1.8; 
-            letter-spacing: 1px; 
-            font-weight: 300;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-
-        /* 2. Chữ welcome đưa lên cao gần đoạn thơ */
-        .hero-welcome { 
-            position: absolute;
-            top: 110px; /* Vị trí cao dưới đoạn thơ */
-            width: 100%;
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 26px; 
-            text-transform: lowercase; 
-            font-weight: 400; 
-            letter-spacing: 2px;
-            color: white;
-        }
-
-        /* 3. Chữ "We got married" CHÍNH GIỮA, TO, XÉO, ĐỔ BÓNG */
-        .hero-married { 
-            position: absolute;
-            top: 50%; /* Nằm đúng giữa chiều cao */
-            left: 50%; 
-            transform: translate(-50%, -50%) rotate(-12deg); /* Căn giữa và xoay xéo */
-            width: 100%;
-            font-family: 'Dancing Script', cursive; 
-            font-size: 60px; /* Kích thước to nổi bật */
-            color: #ffecec; 
-            text-shadow: 3px 3px 10px rgba(0,0,0,0.4); /* Đổ bóng nhẹ sang trọng */
-            z-index: 2;
-        }
-
-        /* 4. Tên 2 người ở dưới */
-        .hero-names { 
-            position: absolute; 
-            bottom: 110px; 
-            width: 90%; 
-            display: flex; 
-            justify-content: space-between; 
-            color: white;
-            padding: 0 15px;
-        }
-        .hero-names h2 { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 400; }
-        .hero-names p { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 4px; opacity: 0.9; }
-
-        /* 5. Ngày tháng & Footer bar */
-        .hero-date { position: absolute; bottom: 70px; color: white; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 3px; }
-        .hero-footer { position: absolute; bottom: 0; left: 0; width: 100%; height: 50px; background: white; display: flex; justify-content: space-around; align-items: center; z-index: 5; }
-        .hero-footer span { font-family: 'Montserrat', sans-serif; font-size: 11px; color: #333; letter-spacing: 3px; }
-
-        /* --- SECTION 2: LỊCH (ẢNH VTV) --- */
+        /* --- SECTION 2: LỊCH --- */
         .calendar-section { 
-            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                         url('https://cdn-images.vtv.vn/2022/3/31/hyun-bin-son-ye-jin-1-1648700983181444118815.jpeg') no-repeat center center; 
-            background-size: cover; color: white; padding: 60px 20px;
+            background-size: cover; color: white; 
         }
-        .glass-box { background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); padding: 25px; border-radius: 20px; width: 100%; max-width: 320px; margin-bottom: 20px; }
+        .glass-box { background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); padding: 25px; border-radius: 20px; width: 100%; max-width: 320px; margin-bottom: 20px; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; font-size: 13px; margin-top: 15px; }
         .special-date { position: relative; font-weight: bold; }
         .heart-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ff4757; font-size: 32px; z-index: -1; }
         #countdown { display: flex; gap: 8px; margin-top: 20px; }
         .time-box { background: rgba(142, 42, 42, 0.9); color: white; width: 62px; padding: 10px 0; border-radius: 8px; }
+        .time-box span { font-size: 18px; font-weight: bold; display: block; }
+        .time-box p { font-size: 10px; margin: 0; }
 
-        /* --- ĐIỀU KHIỂN NỔI --- */
-        #music-btn { position: fixed; top: 20px; right: 20px; width: 42px; height: 42px; background: rgba(255, 255, 255, 0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10001; cursor: pointer; backdrop-filter: blur(5px); }
+        /* --- SECTION 3: TƯƠNG TÁC --- */
+        .wish-box { background: white; padding: 35px 25px; border-radius: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); max-width: 420px; width: 90%; margin: 20px auto; }
+        .wish-box h3 { color: #333; margin-bottom: 20px; font-size: 18px; font-weight: 700; line-height: 1.5; }
+        .wish-box input, .wish-box textarea { width: 100%; display: block; margin-bottom: 12px; padding: 14px; border: 1px solid #eee; border-radius: 10px; font-family: inherit; background: #f9f9f9; outline: none; }
+        .wish-box button { width: 100%; background: #8e2a2a; color: white; border: none; padding: 15px; border-radius: 30px; font-weight: bold; cursor: pointer; }
+        .rsvp-glass { background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.4); border-radius: 30px; padding: 40px 25px; width: 90%; max-width: 450px; z-index: 50; margin-top: 40px; margin-bottom: 40px; }
+
+        /* --- FLOATING CONTROLS --- */
+        #music-btn { position: fixed; top: 20px; right: 20px; width: 42px; height: 42px; background: rgba(255, 255, 255, 0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1000; cursor: pointer; }
         #music-img { width: 28px; height: 28px; animation: spin 4s linear infinite; animation-play-state: paused; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
         .playing #music-img { animation-play-state: running; }
 
-        #wish-toggle-wrapper { position: fixed; bottom: 90px; right: 15px; display: flex; flex-direction: column; align-items: center; z-index: 10001; cursor: pointer; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2)); }
+        #wish-toggle-wrapper { position: fixed; bottom: 90px; right: 15px; display: flex; flex-direction: column; align-items: center; z-index: 1000; cursor: pointer; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2)); }
         .avatar-circle { width: 55px; height: 55px; border-radius: 50%; border: 2px solid #ff5e78; overflow: hidden; background: white; z-index: 2; }
         .avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
         .toggle-button-pink { width: 40px; height: 75px; background: #ff5e78; border-radius: 20px; margin-top: -28px; padding-top: 35px; display: flex; align-items: center; justify-content: center; z-index: 1; color: white; font-weight: bold; }
         
-        #global-wish-container { position: fixed; bottom: 85px; left: 0; width: 100%; height: 25vh; pointer-events: none; z-index: 10; overflow: hidden; mask-image: linear-gradient(to top, transparent, black 15%, black 85%, transparent); -webkit-mask-image: linear-gradient(to top, transparent, black 15%, black 85%, transparent); }
-        .wish-bubble { position: absolute; width: 86%; left: 7%; background: rgba(223, 137, 137, 0.95); padding: 12px 15px; border-radius: 12px; color: white; font-size: 13px; opacity: 0; transition: opacity 0.6s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .wishes-hidden #global-wish-container { display: none; }
-
-        /* --- SECTION 3 & 4 --- */
-        .wish-box { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 400px; width: 90%; margin-bottom: 40px; }
-        .wish-box input, .wish-box textarea { width: 100%; display: block; margin-bottom: 10px; padding: 12px; border: 1px solid #eee; border-radius: 10px; outline: none; font-family: inherit; background: #f9f9f9; }
-        .wish-box button { width: 100%; background: #8e2a2a; color: white; border: none; padding: 15px; border-radius: 30px; font-weight: bold; cursor: pointer; }
-        .rsvp-glass { background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.4); border-radius: 30px; padding: 40px 25px; width: 90%; max-width: 450px; z-index: 2000; }
+        #global-wish-container { position: fixed; bottom: 85px; left: 0; width: 100%; height: 25vh; pointer-events: none; z-index: 100; overflow: hidden; mask-image: linear-gradient(to top, transparent, black 15%, black 85%, transparent); -webkit-mask-image: linear-gradient(to top, transparent, black 15%, black 85%, transparent); }
+        .wish-bubble { position: absolute; width: 86%; left: 7%; background: rgba(223, 137, 137, 0.95); padding: 12px 15px; border-radius: 12px; color: white; font-size: 13px; line-height: 1.4; opacity: 0; transition: opacity 0.5s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .wishes-hidden #global-wish-container { display: none !important; }
     </style>
 </head>
 <body>
@@ -133,9 +77,7 @@
     </div>
 
     <div id="wish-toggle-wrapper" onclick="toggleWishes()">
-        <div class="avatar-circle">
-            <img src="https://w.ladicdn.com/s250x250/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg">
-        </div>
+        <div class="avatar-circle"><img src="https://w.ladicdn.com/s250x250/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg"></div>
         <div class="toggle-button-pink"><span id="toggle-icon">✕</span></div>
     </div>
 
@@ -143,33 +85,98 @@
         <source src="https://www.dropbox.com/scl/fi/10p8durb1q6g5f4pwgntk/Beautiful-In-White_tainhacchuong.org.mp3?rlkey=5plnyt2zakjmigky9ziszvspj&st=mrc8w13n&dl=1" type="audio/mpeg">
     </audio>
 
-    <!-- SECTION 1: HERO -->
     <section class="hero">
-        <div class="hero-quote">
-            I love three things in this world., Sun, moon and you.<br>
-            Sun for morning moon for night,<br>
-            and you forever.
-        </div>
-        
+        <div class="hero-quote">I love three things in this world., Sun, moon and you.<br>Sun for morning moon for night,<br>and you forever.</div>
         <div class="hero-welcome">welcome to our wedding</div>
-        
         <div class="hero-married">We got married</div>
-
-        <div class="hero-names">
-            <div style="text-align: left;">
-                <h2>Ngân</h2>
-                <p>BRIDE</p>
-            </div>
-            <div style="text-align: right;">
-                <h2>Trung</h2>
-                <p>GROOM</p>
-            </div>
-        </div>
-
+        <div class="hero-names"><div style="text-align:left;"><h2>Ngân</h2><p>BRIDE</p></div><div style="text-align:right;"><h2>Trung</h2><p>GROOM</p></div></div>
         <div class="hero-date">2026.06.27</div>
+        <div class="hero-footer"><span>WEDDING</span><span>INVITATION</span><span>2026</span></div>
+    </section>
 
-        <div class="hero-footer">
-            <span>WEDDING</span>
-            <span>INVITATION</span>
-            <span>2026</span>
+    <section class="calendar-section">
+        <div class="glass-box">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 22px;">June 2026</h2>
+            <div class="calendar-grid">
+                <div style="font-weight:bold; opacity:0.7;">M</div><div style="font-weight:bold; opacity:0.7;">T</div><div style="font-weight:bold; opacity:0.7;">W</div><div style="font-weight:bold; opacity:0.7;">T</div><div style="font-weight:bold; opacity:0.7;">F</div><div style="font-weight:bold; opacity:0.7;">S</div><div style="font-weight:bold; opacity:0.7;">S</div>
+                <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div>
+                <div class="special-date">27 <span class="heart-icon">❤</span></div><div>28</div><div>29</div><div>30</div>
+            </div>
         </div>
+        <div style="text-shadow: 2px 2px 10px rgba(0,0,0,0.8); margin-bottom:15px;">
+            <p style="font-size: 22px; font-weight: bold;">Thứ Bảy, 27.06.2026</p>
+            <p style="font-style: italic; font-size: 14px; opacity: 0.9;">Âm lịch: 13/05 (Bính Ngọ) | 11:00 AM</p>
+        </div>
+        <div id="countdown"><div class="time-box"><span id="d">00</span><p>ngày</p></div><div class="time-box"><span id="h">00</span><p>giờ</p></div><div class="time-box"><span id="m">00</span><p>phút</p></div><div class="time-box"><span id="s">00</span><p>giây</p></div></div>
+    </section>
+
+    <section>
+        <div class="wish-box">
+            <h3>Đừng quên để lại lời nhắn dễ thương cho ngày vui của Ngân & Trung nhé.</h3>
+            <input type="text" id="un" placeholder="Tên của bạn...">
+            <textarea id="um" placeholder="Lời nhắn gửi yêu thương..." rows="3"></textarea>
+            <button onclick="sendWishNow()">GỬI LỜI CHÚC</button>
+        </div>
+        
+        <div class="rsvp-glass">
+            <h2 style="color:#8e2a2a; margin-bottom:15px; font-weight:700;">Xác nhận tham dự</h2>
+            <form id="rsvp-form">
+                <input type="text" name="full_name" placeholder="Họ và tên..." required style="width:100%; padding:12px; margin-bottom:15px; border-radius:10px; border:1px solid #ddd;">
+                <div style="text-align:left; color:#111; margin-bottom:15px; font-size: 14px;">
+                    <label style="display:block; margin-bottom:10px;"><input type="radio" name="attendance" value="Có" checked> Có, mình sẽ đến</label>
+                    <label style="display:block;"><input type="radio" name="attendance" value="Không"> Tiếc quá, mình bận rồi</label>
+                </div>
+                <button type="submit" id="sb" style="width:100%; background:#8e2a2a; color:white; border:none; padding:15px; border-radius:35px; font-weight:bold; cursor:pointer;">GỬI XÁC NHẬN</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        const c = document.getElementById('global-wish-container');
+        const s = [{n:"Hiền", m:"🥂 Hạnh phúc nhé!"},{n:"Trung", m:"❤️ Mãi bên nhau nhé!"},{n:"Đức", m:"🕊️ Tân hôn hạnh phúc!"},{n:"Hà", m:"🥰 Chúc mừng hai bạn!"}];
+        let ab = []; let si = 0;
+
+        window.createGlobalWish = function(n, m) {
+            const d = document.createElement('div'); d.className = 'wish-bubble'; d.innerHTML = `<strong>${n}:</strong> ${m}`;
+            c.appendChild(d); const b = { el: d, y: c.offsetHeight, h: d.offsetHeight, f: false }; ab.push(b);
+        };
+
+        function updateWishes() {
+            for (let i = ab.length - 1; i >= 0; i--) {
+                let b = ab[i]; b.y -= 0.65; b.el.style.transform = `translateY(${b.y}px)`;
+                if (!b.f && b.y < c.offsetHeight - 5) { b.el.style.opacity = "1"; b.f = true; }
+                if (b.y + b.h < -15) { b.el.remove(); ab.splice(i, 1); }
+            }
+            if (ab.length === 0 || (ab[ab.length-1].y < c.offsetHeight - ab[ab.length-1].h - 15)) {
+                window.createGlobalWish(s[si].n, s[si].m); si = (si + 1) % s.length;
+            }
+            requestAnimationFrame(updateWishes);
+        }
+        updateWishes();
+
+        function sendWishNow() { const n = document.getElementById('un').value; const m = document.getElementById('um').value; if(n && m) { window.createGlobalWish(n, m); alert("Cảm ơn " + n + "!"); document.getElementById('un').value=''; document.getElementById('um').value=''; } }
+        function toggleWishes() { document.body.classList.toggle('wishes-hidden'); document.getElementById('toggle-icon').innerHTML = document.body.classList.contains('wishes-hidden') ? "☰" : "✕"; }
+
+        setInterval(() => {
+            const gap = new Date("June 27, 2026 11:00:00").getTime() - new Date().getTime();
+            document.getElementById("d").innerText = Math.floor(gap / 86400000);
+            document.getElementById("h").innerText = Math.floor((gap % 86400000) / 3600000);
+            document.getElementById("m").innerText = Math.floor((gap % 3600000) / 60000);
+            document.getElementById("s").innerText = Math.floor((gap % 60000) / 1000);
+        }, 1000);
+
+        const au = document.getElementById("wedding-music"); const mb = document.getElementById("music-btn");
+        function toggleMusic() { if (au.paused) { au.play(); mb.classList.add("playing"); } else { au.pause(); mb.classList.remove("playing"); } }
+        
+        function unlock() { if (au.paused) { au.play().then(()=>mb.classList.add("playing")).catch(e=>{}); } document.removeEventListener('click', unlock); document.removeEventListener('touchstart', unlock); }
+        document.addEventListener('click', unlock); document.addEventListener('touchstart', unlock);
+
+        const form = document.getElementById('rsvp-form');
+        form.addEventListener('submit', e => {
+            e.preventDefault(); document.getElementById('sb').innerText = "ĐANG GỬI...";
+            fetch('https://script.google.com/macros/s/AKfycbx762lw7Y2DGjzzRG4rLAMhbdNYvzbUwBCYMe-aLszxLpu6oTjCsjXaJg2t1RKd2fosiw/exec', { method: 'POST', body: new FormData(form)})
+            .then(() => { alert("Xác nhận thành công! ❤️"); location.reload(); });
+        });
+    </script>
+</body>
+</html>
