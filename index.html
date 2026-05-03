@@ -10,34 +10,60 @@
         body { background: #fdfdfd; font-family: 'Noto Serif Vietnamese', serif; overflow-x: hidden; }
         section { min-height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; text-align: center; padding: 60px 20px; }
 
-        /* NÚT NHẠC */
+        /* --- SECTION 1: HERO (ĐÃ CĂN CHỈNH ĐƯA CHỮ LÊN CAO) --- */
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
+                        url('https://w.ladicdn.com/s1000x1200/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg') no-repeat center center; 
+            background-size: cover; padding: 0; 
+        }
+
+        /* Câu thơ trên cùng */
+        .hero-quote { 
+            position: absolute; 
+            top: 35px; /* Cách mép trên 35px */
+            width: 100%; 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 10px; 
+            color: white; 
+            line-height: 1.8; 
+            letter-spacing: 1px; 
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Khối nội dung Welcome (ĐÃ ĐƯA LÊN CAO) */
+        .hero-main-content { 
+            position: absolute;
+            top: 120px; /* Đẩy lên cao để gần đoạn thơ và không che mặt */
+            width: 100%;
+            color: white; 
+        }
+        .hero-welcome { font-family: 'Montserrat', sans-serif; font-size: 24px; text-transform: lowercase; font-weight: 400; letter-spacing: 2px; }
+        .hero-married { font-family: 'Dancing Script', cursive; font-size: 40px; color: #ffecec; transform: rotate(-8deg); margin: 5px 0; }
+
+        /* Tên 2 người ở dưới */
+        .hero-names { position: absolute; bottom: 105px; width: 90%; display: flex; justify-content: space-between; color: white; padding: 0 15px; }
+        .hero-names h2 { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 400; }
+        .hero-names p { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 3px; }
+        .hero-date { position: absolute; bottom: 65px; color: white; font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 300; letter-spacing: 2px; }
+        .hero-footer { position: absolute; bottom: 0; width: 100%; height: 45px; background: white; display: flex; justify-content: space-around; align-items: center; color: #333; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; }
+
+        /* --- CÁC NÚT ĐIỀU KHIỂN --- */
         #music-btn { position: fixed; top: 20px; right: 20px; width: 42px; height: 42px; background: rgba(255, 255, 255, 0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10001; cursor: pointer; backdrop-filter: blur(5px); }
         #music-img { width: 28px; height: 28px; animation: spin 4s linear infinite; animation-play-state: paused; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
         .playing #music-img { animation-play-state: running; }
 
-        /* NÚT TẮT/HIỆN LỜI CHÚC */
         #wish-toggle-wrapper { position: fixed; bottom: 90px; right: 15px; display: flex; flex-direction: column; align-items: center; z-index: 10001; cursor: pointer; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2)); }
         .avatar-circle { width: 55px; height: 55px; border-radius: 50%; border: 2px solid #ff5e78; overflow: hidden; background: white; z-index: 2; }
         .avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
-        .toggle-button-pink { width: 40px; height: 75px; background: #ff5e78; border-radius: 20px; margin-top: -28px; padding-top: 35px; display: flex; align-items: center; justify-content: center; z-index: 1; color: white; font-weight: bold; }
+        .toggle-button-pink { width: 40px; height: 75px; background: #ff5e78; border-radius: 20px; margin-top: -28px; padding-top: 35px; display: flex; align-items: center; justify-content: center; z-index: 1; color: white; font-weight: bold; font-size: 18px; }
         
-        /* LỜI CHÚC BAY */
         #global-wish-container { position: fixed; bottom: 85px; left: 0; width: 100%; height: 25vh; pointer-events: none; z-index: 10; overflow: hidden; mask-image: linear-gradient(to top, transparent, black 15%, black 85%, transparent); -webkit-mask-image: linear-gradient(to top, transparent, black 15%, black 85%, transparent); }
         .wish-bubble { position: absolute; width: 86%; left: 7%; background: rgba(223, 137, 137, 0.95); padding: 12px 15px; border-radius: 12px; color: white; font-size: 13px; opacity: 0; transition: opacity 0.6s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .wishes-hidden #global-wish-container { display: none; }
 
-        /* SECTION 1: HERO */
-        .hero { background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('https://w.ladicdn.com/s1000x1200/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg') no-repeat center center; background-size: cover; padding: 0; }
-        .hero-quote { position: absolute; top: 40px; width: 100%; font-family: 'Montserrat', sans-serif; font-size: 11px; color: white; line-height: 1.8; letter-spacing: 1px; font-weight: 300; }
-        .hero-welcome { font-family: 'Montserrat', sans-serif; font-size: 26px; text-transform: lowercase; color: white; }
-        .hero-married { font-family: 'Dancing Script', cursive; font-size: 42px; color: #ffecec; transform: rotate(-8deg); margin: 10px 0; }
-        .hero-names { position: absolute; bottom: 110px; width: 90%; display: flex; justify-content: space-between; color: white; padding: 0 15px; }
-        .hero-names h2 { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 400; }
-        .hero-date { position: absolute; bottom: 70px; color: white; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 300; }
-        .hero-footer { position: absolute; bottom: 0; width: 100%; height: 50px; background: white; display: flex; justify-content: space-around; align-items: center; color: #333; font-family: 'Montserrat', sans-serif; font-size: 12px; letter-spacing: 3px; }
-
-        /* SECTION 2: LỊCH */
+        /* --- SECTION 2: LỊCH --- */
         .calendar-section { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://cdn-images.vtv.vn/2022/3/31/hyun-bin-son-ye-jin-1-1648700983181444118815.jpeg') no-repeat center center; background-size: cover; color: white; }
         .glass-box { background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); padding: 25px; border-radius: 20px; width: 100%; max-width: 320px; margin-bottom: 20px; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; font-size: 13px; margin-top: 15px; }
@@ -45,40 +71,17 @@
         .heart-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ff4757; font-size: 32px; z-index: -1; }
         #countdown { display: flex; gap: 8px; margin-top: 20px; }
         .time-box { background: rgba(142, 42, 42, 0.9); color: white; width: 62px; padding: 10px 0; border-radius: 8px; }
-        .time-box span { font-size: 18px; font-weight: bold; display: block; }
-        .time-box p { font-size: 10px; margin: 0; }
 
-        /* SECTION 3: FIX LỖI GỬI LỜI CHÚC - ĐÃ SỬA LẠI CSS TẠI ĐÂY */
+        /* --- SECTION 3: WISH BOX --- */
         .wish-box { background: white; padding: 35px 25px; border-radius: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); max-width: 450px; width: 90%; margin: 20px auto; }
         .wish-box h3 { color: #333; margin-bottom: 25px; font-size: 18px; line-height: 1.5; font-weight: 700; }
-        .wish-box input, .wish-box textarea { 
-            width: 100%; 
-            display: block; /* Ép buộc xuống hàng */
-            margin-bottom: 15px; 
-            padding: 14px; 
-            border: 1px solid #eee; 
-            border-radius: 10px; 
-            outline: none; 
-            font-family: inherit; 
-            background: #f9f9f9;
-            font-size: 14px;
-        }
-        .wish-box button { 
-            width: 100%; /* Nút bấm dài ra */
-            background: #8e2a2a; 
-            color: white; 
-            border: none; 
-            padding: 15px; 
-            border-radius: 30px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            font-family: inherit;
-            box-shadow: 0 5px 15px rgba(142, 42, 42, 0.2);
-        }
+        .wish-box input, .wish-box textarea { width: 100%; display: block; margin-bottom: 15px; padding: 14px; border: 1px solid #eee; border-radius: 10px; outline: none; font-family: inherit; background: #f9f9f9; font-size: 14px; }
+        .wish-box button { width: 100%; background: #8e2a2a; color: white; border: none; padding: 15px; border-radius: 30px; font-weight: bold; cursor: pointer; font-family: inherit; }
 
-        /* SECTION 4: RSVP MẶT NƯỚC */
-        .rsvp-glass { background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.4); border-radius: 30px; padding: 40px 25px; width: 90%; max-width: 450px; z-index: 2000; margin-top: 40px; }
+        /* --- SECTION 4: RSVP --- */
+        .rsvp-glass { background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.4); border-radius: 30px; padding: 40px 25px; width: 90%; max-width: 450px; z-index: 2000; margin-top: 40px; }
         .rsvp-glass input, .rsvp-glass select { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.3); font-family: inherit; outline: none; }
+        #sb { width: 100%; background: #8e2a2a; color: white; border: none; padding: 16px; border-radius: 35px; font-weight: bold; cursor: pointer; font-family: inherit; }
     </style>
 </head>
 <body>
@@ -101,11 +104,34 @@
     </audio>
 
     <section class="hero">
-        <div class="hero-quote">I love three things in this world., Sun, moon and you.<br>Sun for morning moon for night,<br>and you forever.</div>
-        <div style="margin-top:-80px;"><div class="hero-welcome">welcome to our wedding</div><div class="hero-married">We got married</div></div>
-        <div class="hero-names"><div style="text-align:left;"><h2>Ngân</h2><p>BRIDE</p></div><div style="text-align:right;"><h2>Trung</h2><p>GROOM</p></div></div>
+        <div class="hero-quote">
+            I love three things in this world., Sun, moon and you.<br>
+            Sun for morning moon for night,<br>
+            and you forever.
+        </div>
+        
+        <div class="hero-main-content">
+            <div class="hero-welcome">welcome to our wedding</div>
+            <div class="hero-married">We got married</div>
+        </div>
+
+        <div class="hero-names">
+            <div style="text-align: left;">
+                <h2>Ngân</h2>
+                <p>BRIDE</p>
+            </div>
+            <div style="text-align: right;">
+                <h2>Trung</h2>
+                <p>GROOM</p>
+            </div>
+        </div>
+
         <div class="hero-date">2026.06.27</div>
-        <div class="hero-footer"><span>WEDDING</span><span>INVITATION</span><span>2026</span></div>
+        <div class="hero-footer">
+            <span>WEDDING</span>
+            <span>INVITATION</span>
+            <span>2026</span>
+        </div>
     </section>
 
     <section class="calendar-section">
@@ -113,8 +139,12 @@
             <h2 style="font-family: 'Playfair Display', serif; font-size: 24px;">June 2026</h2>
             <div class="calendar-grid">
                 <div style="font-weight:bold; opacity:0.7;">M</div><div style="font-weight:bold; opacity:0.7;">T</div><div style="font-weight:bold; opacity:0.7;">W</div><div style="font-weight:bold; opacity:0.7;">T</div><div style="font-weight:bold; opacity:0.7;">F</div><div style="font-weight:bold; opacity:0.7;">S</div><div style="font-weight:bold; opacity:0.7;">S</div>
-                <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div>
-                <div class="special-date">27 <span class="heart-icon">❤</span></div><div>28</div><div>29</div><div>30</div>
+                <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
+                <div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div>
+                <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div>
+                <div>22</div><div>23</div><div>24</div><div>25</div><div>26</div>
+                <div class="special-date">27 <span class="heart-icon">❤</span></div><div>28</div>
+                <div>29</div><div>30</div>
             </div>
         </div>
         <div style="text-shadow: 2px 2px 10px rgba(0,0,0,0.8);"><p style="font-size: 22px; font-weight: bold;">Thứ Bảy, 27.06.2026</p><p style="font-style: italic; font-size: 14px; opacity: 0.9;">Âm lịch: 13/05 (Bính Ngọ) | 11:00 AM</p></div>
@@ -125,7 +155,7 @@
         <div class="wish-box">
             <h3>Đừng quên để lại lời nhắn dễ thương cho ngày vui của Ngân & Trung nhé.</h3>
             <input type="text" id="un" placeholder="Tên của bạn...">
-            <textarea id="um" placeholder="Lời nhắn gửi yêu thương..." rows="4"></textarea>
+            <textarea id="um" placeholder="Lời nhắn gửi yêu thương..." rows="3"></textarea>
             <button onclick="sendWishNow()">GỬI LỜI CHÚC</button>
         </div>
         
@@ -134,10 +164,9 @@
             <form id="rsvp-form">
                 <input type="text" name="full_name" placeholder="Họ và tên..." required>
                 <div style="text-align:left; color:#111; margin-bottom:15px; font-size: 14px;">
-                    <label style="display:block; margin-bottom:10px;"><input type="radio" name="attendance" value="Có" checked> Có, mình sẽ đến</label>
-                    <label style="display:block;"><input type="radio" name="attendance" value="Không"> Tiếc quá, mình bận rồi</label>
+                    <label style="display:block; margin-bottom:10px;"><input type="radio" name="attendance" value="Có tham dự" checked> Có, mình sẽ đến</label>
+                    <label style="display:block;"><input type="radio" name="attendance" value="Không tham dự"> Tiếc quá, mình bận rồi</label>
                 </div>
-                <select name="guest_count"><option value="0">Đi một mình</option><option value="1">Đi cùng 1 người</option><option value="2">Đi cùng 2 người</option></select>
                 <button type="submit" id="sb">GỬI XÁC NHẬN</button>
             </form>
         </div>
@@ -153,17 +182,17 @@
         };
         function updateWishes() {
             for (let i = ab.length - 1; i >= 0; i--) {
-                let b = ab[i]; b.y -= 0.6; b.el.style.transform = `translateY(${b.y}px)`;
+                let b = ab[i]; b.y -= 0.65; b.el.style.transform = `translateY(${b.y}px)`;
                 if (!b.f && b.y < c.offsetHeight - 5) { b.el.style.opacity = "1"; b.f = true; }
                 if (b.y + b.h < -10) { b.el.remove(); ab.splice(i, 1); }
             }
-            if (ab.length === 0 || (ab[ab.length-1].y < c.offsetHeight - ab[ab.length-1].h - 20)) {
+            if (ab.length === 0 || (ab[ab.length-1].y < c.offsetHeight - ab[ab.length-1].h - 15)) {
                 window.createGlobalWish(s[si].n, s[si].m); si = (si + 1) % s.length;
             }
             requestAnimationFrame(updateWishes);
         }
         updateWishes();
-        function sendWishNow() { const n = document.getElementById('un').value; const m = document.getElementById('um').value; if(n && m) { window.createGlobalWish(n, m); alert("Cảm ơn " + n + "!"); document.getElementById('un').value=''; document.getElementById('um').value=''; } }
+        function sendWishNow() { const n = document.getElementById('un').value; const m = document.getElementById('um').value; if(n && m) { window.createGlobalWish(n, m); alert("Cảm ơn " + n + " đã gửi lời chúc!"); document.getElementById('un').value=''; document.getElementById('um').value=''; } }
         function toggleWishes() { document.body.classList.toggle('wishes-hidden'); document.getElementById('toggle-icon').innerHTML = document.body.classList.contains('wishes-hidden') ? "☰" : "✕"; }
 
         setInterval(() => {
