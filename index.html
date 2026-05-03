@@ -73,7 +73,101 @@
         <h2 style="color: #8e2a2a;">Our Love Story</h2>
         <img src="https://w.ladicdn.com/s450x600/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg" style="width: 80%; border-radius: 15px;">
     </section>
+<!-- SECTION: LỊCH VÀ ĐẾM NGƯỢC -->
+<section class="wedding-date-section">
+    <!-- 1. KHUNG LỊCH THÁNG 6/2026 -->
+    <div class="calendar-box">
+        <h2 class="calendar-month">June 2026</h2>
+        <div class="calendar-grid">
+            <div class="day-name">M</div><div class="day-name">T</div><div class="day-name">W</div><div class="day-name">T</div><div class="day-name">F</div><div class="day-name">S</div><div class="day-name">S</div>
+            
+            <!-- Ngày trống đầu tháng (Tháng 6/2026 bắt đầu từ thứ 2) -->
+            <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
+            <div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div>
+            <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div>
+            <div>22</div><div>23</div><div>24</div><div>25</div><div>26</div>
+            <div class="special-date">27 <span class="heart-icon">❤</span></div><div>28</div>
+            <div>29</div><div>30</div>
+        </div>
+    </div>
 
+    <!-- 2. THÔNG TIN NGÀY CƯỚI -->
+    <div class="wedding-info-text">
+        <p class="main-date">Thứ Bảy, 27.06.2026</p>
+        <p class="lunar-date">Âm lịch: 13/05 (Bính Ngọ) | 11:00 AM</p>
+    </div>
+
+    <!-- 3. ĐỒNG HỒ ĐẾM NGƯỢC -->
+    <div id="countdown-timer">
+        <div class="timer-item"><span id="days">00</span><p>ngày</p></div>
+        <div class="timer-item"><span id="hours">00</span><p>giờ</p></div>
+        <div class="timer-item"><span id="minutes">00</span><p>phút</p></div>
+        <div class="timer-item"><span id="seconds">00</span><p>giây</p></div>
+    </div>
+</section>
+
+<style>
+    .wedding-date-section { padding: 60px 20px; background: #fff; text-align: center; }
+    
+    /* Style Lịch */
+    .calendar-box { 
+        background: rgba(255, 255, 255, 0.1); 
+        border: 1px solid #eee; 
+        padding: 20px; 
+        border-radius: 15px; 
+        max-width: 320px; 
+        margin: 0 auto 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .calendar-month { font-family: 'Playfair Display', serif; font-size: 24px; color: #8e2a2a; margin-bottom: 15px; }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; font-size: 14px; }
+    .day-name { font-weight: bold; color: #8e2a2a; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+    
+    .special-date { position: relative; color: white; font-weight: bold; z-index: 1; }
+    .heart-icon { 
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        color: rgba(142, 42, 42, 0.8); font-size: 35px; z-index: -1;
+    }
+
+    /* Style Thông tin chữ */
+    .wedding-info-text { margin-bottom: 30px; }
+    .main-date { font-size: 22px; font-weight: bold; color: #333; margin-bottom: 5px; }
+    .lunar-date { font-size: 14px; color: #666; font-style: italic; }
+
+    /* Style Đếm ngược */
+    #countdown-timer { display: flex; justify-content: center; gap: 10px; }
+    .timer-item { 
+        background: #8e2a2a; color: white; width: 65px; padding: 10px 0; 
+        border-radius: 8px; box-shadow: 0 4px 10px rgba(142, 42, 42, 0.3);
+    }
+    .timer-item span { font-size: 20px; font-weight: bold; display: block; }
+    .timer-item p { font-size: 11px; margin: 0; text-transform: uppercase; }
+</style>
+
+<script>
+    // SCRIPT ĐẾM NGƯỢC
+    const weddingDate = new Date("June 27, 2026 11:00:00").getTime();
+
+    const countdown = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = d;
+        document.getElementById("hours").innerHTML = h;
+        document.getElementById("minutes").innerHTML = m;
+        document.getElementById("seconds").innerHTML = s;
+
+        if (distance < 0) {
+            clearInterval(countdown);
+            document.getElementById("countdown-timer").innerHTML = "HAPPY WEDDING DAY!";
+        }
+    }, 1000);
+</script>
     <!-- SECTION 3: Box lời chúc -->
     <section>
         <div class="wish-box-container">
