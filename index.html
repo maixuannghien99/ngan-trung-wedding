@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Cưới Ngân & Trung</title>
+    <!-- Nhúng Font chữ -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Vietnamese:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { margin: 0; padding: 0; background: #fdfdfd; font-family: 'Noto Serif Vietnamese', serif; }
+        section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 20px; box-sizing: border-box; text-align: center; }
+        
+        /* Section 1: Hero */
+        .hero { background: url('https://w.ladicdn.com/s1000x1200/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg') no-repeat center center; background-size: cover; color: white; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+
+        /* Section 3: Box gửi lời chúc */
+        .wish-box-container { background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 400px; width: 90%; }
+        .wish-box-container h3 { font-family: 'Noto Serif Vietnamese', serif; color: #8e2a2a; margin-bottom: 20px; }
+        .wish-box-container input, .wish-box-container textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .wish-box-container button { background: #8e2a2a; color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; width: 100%; font-weight: bold; }
+
+        /* Section Cuối: RSVP Kính mờ */
+        .rsvp-glass-container { background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.15)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.4); padding: 40px; border-radius: 30px; max-width: 450px; width: 90%; z-index: 2000; }
+        .rsvp-title { color: #8e2a2a; font-size: 24px; font-weight: bold; }
+        .btn-submit-rsvp { width: 100%; background: #8e2a2a; color: white; border: none; padding: 15px; border-radius: 30px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+
+        /* Lời chúc bay */
+        #global-wish-container { position: fixed; bottom: 85px; left: 0; width: 100%; height: 25vh; pointer-events: none; z-index: 999; overflow: hidden; mask-image: linear-gradient(to top, transparent, black 15%, black 85%, transparent); -webkit-mask-image: linear-gradient(to top, transparent, black 15%, black 85%, transparent); }
+        .wish-bubble { position: absolute; width: 86%; left: 7%; background: rgba(223, 137, 137, 0.9); padding: 12px; border-radius: 12px; color: white; font-size: 13px; opacity: 0; transition: opacity 0.6s; }
+
+        /* Các nút điều khiển */
+        #music-btn { position: fixed; top: 20px; right: 20px; width: 42px; height: 42px; background: rgba(255, 255, 255, 0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10001; cursor: pointer; }
+        #music-img { width: 28px; height: 28px; animation: spin 4s linear infinite; animation-play-state: paused; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .playing #music-img { animation-play-state: running; }
+
+        #wish-toggle-wrapper { position: fixed; bottom: 100px; right: 20px; display: flex; flex-direction: column; align-items: center; z-index: 10001; cursor: pointer; }
+        .avatar-circle { width: 56px; height: 56px; border-radius: 50%; border: 2px solid #ff5e78; overflow: hidden; background: white; z-index: 2; }
+        .avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
+        .toggle-button-pink { width: 42px; height: 80px; background: #ff5e78; border-radius: 25px; margin-top: -28px; padding-top: 35px; display: flex; align-items: center; justify-content: center; z-index: 1; box-sizing: border-box; color: white; font-weight: bold; }
+        .wishes-hidden #global-wish-container { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="global-wish-container"></div>
+
+    <div id="music-btn" onclick="toggleMusic()">
+        <img id="music-img" src="https://cdn-icons-png.flaticon.com/512/461/461238.png">
+    </div>
+
+    <div id="wish-toggle-wrapper" onclick="toggleWishes()">
+        <div class="avatar-circle">
+            <img src="https://w.ladicdn.com/s250x250/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg">
+        </div>
+        <div class="toggle-button-pink"><span id="toggle-icon">✕</span></div>
+    </div>
+
+    <audio id="wedding-music" loop>
+        <source src="https://www.dropbox.com/scl/fi/10p8durb1q6g5f4pwgntk/Beautiful-In-White_tainhacchuong.org.mp3?rlkey=5plnyt2zakjmigky9ziszvspj&st=mrc8w13n&dl=1" type="audio/mpeg">
+    </audio>
+
+    <!-- SECTION 1 -->
+    <section class="hero">
+        <h1>Welcome to our wedding</h1>
+        <p>Ngân & Trung</p>
+    </section>
+
+    <!-- SECTION 2: Love Story -->
+    <section>
+        <h2 style="color: #8e2a2a;">Our Love Story</h2>
+        <img src="https://w.ladicdn.com/s450x600/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg" style="width: 80%; border-radius: 15px;">
+    </section>
+
+    <!-- SECTION 3: Box lời chúc -->
+    <section>
+        <div class="wish-box-container">
+            <h3>Để lại lời chúc cho hai mình nhé</h3>
+            <input type="text" id="user-name" placeholder="Tên của bạn...">
+            <textarea id="user-msg" placeholder="Lời chúc của bạn..."></textarea>
+            <button onclick="sendWishNow()">GỬI LỜI CHÚC</button>
+        </div>
+    </section>
+
+    <!-- SECTION CUỐI: RSVP -->
+    <section>
+        <div class="rsvp-glass-container">
+            <h2 class="rsvp-title">Xác nhận tham dự</h2>
+            <form id="rsvp-wedding-form">
+                <input type="text" name="full_name" placeholder="Tên bạn..." required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">
+                <div style="text-align:left; margin-bottom:10px;">
+                    <label><input type="radio" name="attendance" value="Có" checked> Có, mình sẽ đến</label><br>
+                    <label><input type="radio" name="attendance" value="Không"> Tiếc quá, mình bận rồi</label>
+                </div>
+                <button type="submit" class="btn-submit-rsvp" id="submit-btn">GỬI XÁC NHẬN</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Logic lời chúc bay
+        const container = document.getElementById('global-wish-container');
+        const samples = [{n:"Trung", m:"❤️ Hạnh phúc nhé!"},{n:"Đức", m:"🕊️ Trăm năm bên nhau!"},{n:"Hà", m:"🥰 Chúc mừng hai bạn!"}];
+        let activeB = []; let idx = 0;
+        window.createWish = function(n, m) {
+            const div = document.createElement('div'); div.className = 'wish-bubble';
+            div.innerHTML = `<strong>${n}:</strong> ${m}`; container.appendChild(div);
+            const bObj = { el: div, y: container.offsetHeight, h: div.offsetHeight, f: false };
+            activeB.push(bObj);
+        };
+        function update() {
+            for (let i = activeB.length - 1; i >= 0; i--) {
+                let b = activeB[i]; b.y -= 0.7; b.el.style.transform = `translateY(${b.y}px)`;
+                if (!b.f && b.y < container.offsetHeight - 5) { b.el.style.opacity = "1"; b.f = true; }
+                if (b.y + b.h < -10) { b.el.remove(); activeB.splice(i, 1); }
+            }
+            if (activeB.length === 0 || (activeB[activeB.length-1].y < container.offsetHeight - activeB[activeB.length-1].h - 20)) {
+                createWish(samples[idx].n, samples[idx].m); idx = (idx + 1) % samples.length;
+            }
+            requestAnimationFrame(update);
+        }
+        update();
+
+        function sendWishNow() {
+            const n = document.getElementById('user-name').value;
+            const m = document.getElementById('user-msg').value;
+            if(n && m) { createWish(n, m); alert("Cảm ơn " + n + "!"); }
+        }
+
+        function toggleWishes() { document.body.classList.toggle('wishes-hidden'); }
+
+        // Logic Nhạc
+        var audio = document.getElementById("wedding-music");
+        var btn = document.getElementById("music-btn");
+        function toggleMusic() { if (audio.paused) { audio.play(); btn.classList.add("playing"); } else { audio.pause(); btn.classList.remove("playing"); } }
+        document.addEventListener('click', () => { if (audio.paused) { audio.play(); btn.classList.add("playing"); } }, { once: true });
+
+        // Logic RSVP gửi về Google Sheet của bạn
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx762lw7Y2DGjzzRG4rLAMhbdNYvzbUwBCYMe-aLszxLpu6oTjCsjXaJg2t1RKd2fosiw/exec';
+        const form = document.getElementById('rsvp-wedding-form');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('submit-btn').innerHTML = "ĐANG GỬI...";
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(res => { alert("Xác nhận thành công!"); location.reload(); })
+            .catch(err => alert("Lỗi, thử lại sau!"));
+        });
+    </script>
+</body>
+</html>
