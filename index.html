@@ -4,44 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thiệp Cưới Ngân & Trung</title>
+    <!-- Nhúng font chữ sang trọng -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Vietnamese:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #fdfdfd; font-family: 'Noto Serif Vietnamese', serif; overflow-x: hidden; }
         
-        /* Cấu trúc Section */
         section { min-height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 60px 20px; text-align: center; }
 
-        /* SECTION 1: HERO */
+        /* SECTION 1: ẢNH BÌA */
         .hero { 
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
                         url('https://w.ladicdn.com/s1000x1200/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg') no-repeat center center; 
             background-size: cover; color: white; 
         }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
 
-        /* SECTION 2: LỊCH VÀ ĐẾM NGƯỢC (CÓ HÌNH NỀN) */
+        /* SECTION 2: LỊCH VÀ ĐẾM NGƯỢC (ẢNH VTV BẠN GỬI) */
         .calendar-section { 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://w.ladicdn.com/6422976ce1b15300125bb011/338944510_776106673859737_4896791034440051280_n-20230405073041-0t63a.jpg') no-repeat center center; 
-            background-size: cover; 
+            position: relative;
+            background-image: url('https://cdn-images.vtv.vn/2022/3/31/hyun-bin-son-ye-jin-1-1648700983181444118815.jpeg') !important;
+            background-repeat: no-repeat !important;
+            background-position: center center !important;
+            background-size: cover !important;
+            /* Hiệu ứng Parallax nhẹ giống Cinelove */
+            background-attachment: fixed;
             color: white;
+            z-index: 1;
         }
+
+        /* Lớp phủ để ảnh chìm xuống, làm nổi bật Box kính mờ */
+        .calendar-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3); 
+            z-index: -1;
+        }
+
         .glass-box { 
-            background: rgba(255, 255, 255, 0.15); 
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); 
+            background: rgba(255, 255, 255, 0.18); 
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
             border: 1px solid rgba(255,255,255,0.3); 
-            padding: 25px; border-radius: 20px; width: 100%; max-width: 340px; margin-bottom: 30px;
+            padding: 25px; border-radius: 20px; width: 100%; max-width: 340px; margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; font-size: 14px; margin-top: 15px; }
-        .day-name { font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 5px; }
+        .day-name { font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; }
         .special-date { position: relative; font-weight: bold; }
         .heart-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ff4757; font-size: 32px; z-index: -1; }
         
         #countdown { display: flex; gap: 10px; margin-top: 20px; }
-        .time-box { background: #8e2a2a; color: white; width: 65px; padding: 10px 0; border-radius: 10px; }
-        .time-box span { font-size: 20px; font-weight: bold; display: block; }
+        .time-box { background: rgba(142, 42, 42, 0.95); color: white; width: 65px; padding: 10px 0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .time-box span { font-size: 18px; font-weight: bold; display: block; }
         .time-box p { font-size: 10px; margin: 0; text-transform: uppercase; }
 
         /* SECTION 3: BOX GỬI LỜI CHÚC */
@@ -50,7 +66,7 @@
         .wish-box input, .wish-box textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #eee; border-radius: 8px; outline: none; font-family: inherit; }
         .wish-box button { background: #8e2a2a; color: white; border: none; padding: 15px; border-radius: 30px; width: 100%; font-weight: bold; cursor: pointer; }
 
-        /* SECTION 4: RSVP TRONG SUỐT */
+        /* SECTION 4: RSVP MẶT NƯỚC */
         .rsvp-glass { 
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.15)); 
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -78,10 +94,12 @@
 
     <div id="global-wish-container"></div>
 
+    <!-- Nút Nhạc -->
     <div id="music-btn" onclick="toggleMusic()">
         <img id="music-img" src="https://cdn-icons-png.flaticon.com/512/461/461238.png">
     </div>
 
+    <!-- Nút Tắt/Hiện Lời Chúc -->
     <div id="wish-toggle-wrapper" onclick="toggleWishes()">
         <div class="avatar-circle">
             <img src="https://w.ladicdn.com/s250x250/6422976ce1b15300125bb011/test-1-20260503054736-ayxt5.jpeg">
@@ -89,6 +107,7 @@
         <div class="toggle-button-pink"><span id="toggle-icon">✕</span></div>
     </div>
 
+    <!-- Nhạc Dropbox -->
     <audio id="wedding-music" loop>
         <source src="https://www.dropbox.com/scl/fi/10p8durb1q6g5f4pwgntk/Beautiful-In-White_tainhacchuong.org.mp3?rlkey=5plnyt2zakjmigky9ziszvspj&st=mrc8w13n&dl=1" type="audio/mpeg">
     </audio>
@@ -99,7 +118,7 @@
         <p>Ngân & Trung</p>
     </section>
 
-    <!-- SECTION 2: LỊCH VÀ ĐẾM NGƯỢC (HÌNH BẠN MUỐN) -->
+    <!-- SECTION 2: LỊCH VỚI ẢNH VTV -->
     <section class="calendar-section">
         <div class="glass-box">
             <h2 style="font-family: 'Playfair Display', serif;">June 2026</h2>
@@ -113,9 +132,9 @@
                 <div>29</div><div>30</div>
             </div>
         </div>
-        <div style="text-shadow: 1px 1px 10px rgba(0,0,0,0.5);">
-            <p style="font-size: 20px; font-weight: bold;">Thứ Bảy, 27.06.2026</p>
-            <p style="font-style: italic; font-size: 14px;">Âm lịch: 13/05 (Bính Ngọ) | 11:00 AM</p>
+        <div style="text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">
+            <p style="font-size: 22px; font-weight: bold; margin-bottom: 5px;">Thứ Bảy, 27.06.2026</p>
+            <p style="font-style: italic; font-size: 15px;">Âm lịch: 13/05 (Bính Ngọ) | 11:00 AM</p>
         </div>
         <div id="countdown">
             <div class="time-box"><span id="d">00</span><p>ngày</p></div>
@@ -138,64 +157,8 @@
     <!-- SECTION 4: RSVP -->
     <section>
         <div class="rsvp-glass">
-            <h2 style="color:#8e2a2a; margin-bottom:10px;">Xác nhận tham dự</h2>
+            <h2 style="color:#8e2a2a; margin-bottom:12px;">Xác nhận tham dự</h2>
             <form id="rsvp-form">
                 <input type="text" name="full_name" placeholder="Họ và tên..." required style="width:100%; padding:12px; margin-bottom:15px; border-radius:10px; border:1px solid #ddd;">
-                <div style="text-align:left; color:#111; margin-bottom:15px;">
-                    <label style="display:block; margin-bottom:8px;"><input type="radio" name="attendance" value="Có" checked> Có, mình sẽ đến</label>
-                    <label style="display:block;"><input type="radio" name="attendance" value="Không"> Tiếc quá, mình bận rồi</label>
-                </div>
-                <select name="guest_count" style="width:100%; padding:12px; margin-bottom:20px; border-radius:10px; border:1px solid #ddd;">
-                    <option value="0">Đi một mình</option><option value="1">Đi cùng 1 người</option><option value="2">Đi cùng 2 người</option>
-                </select>
-                <button type="submit" id="sb" style="width:100%; background:#8e2a2a; color:white; border:none; padding:15px; border-radius:30px; font-weight:bold; cursor:pointer;">GỬI XÁC NHẬN</button>
-            </form>
-        </div>
-    </section>
-
-    <script>
-        // LỜI CHÚC BAY
-        const c = document.getElementById('global-wish-container');
-        const s = [{n:"Trung", m:"❤️ Mãi hạnh phúc nhé!"},{n:"Đức", m:"🕊️ Trăm năm bên nhau!"},{n:"Hà", m:"🥰 Chúc mừng hai bạn!"},{n:"Mai", m:"✨ Đám cưới tuyệt vời!"}];
-        let ab = []; let si = 0;
-        window.createGlobalWish = function(n, m) {
-            const d = document.createElement('div'); d.className = 'wish-bubble'; d.innerHTML = `<strong>${n}:</strong> ${m}`;
-            c.appendChild(d); const b = { el: d, y: c.offsetHeight, h: d.offsetHeight, f: false }; ab.push(b);
-        };
-        function update() {
-            for (let i = ab.length - 1; i >= 0; i--) {
-                let b = ab[i]; b.y -= 0.6; b.el.style.transform = `translateY(${b.y}px)`;
-                if (!b.f && b.y < c.offsetHeight - 5) { b.el.style.opacity = "1"; b.f = true; }
-                if (b.y + b.h < -10) { b.el.remove(); ab.splice(i, 1); }
-            }
-            if (ab.length === 0 || (ab[ab.length-1].y < c.offsetHeight - ab[ab.length-1].h - 15)) {
-                createGlobalWish(s[si].n, s[si].m); si = (si + 1) % s.length;
-            }
-            requestAnimationFrame(update);
-        }
-        update();
-        function sendWishNow() { const n = document.getElementById('un').value; const m = document.getElementById('um').value; if(n && m) { window.createGlobalWish(n, m); alert("Cảm ơn bạn!"); } }
-        function toggleWishes() { document.body.classList.toggle('wishes-hidden'); document.getElementById('toggle-icon').innerHTML = document.body.classList.contains('wishes-hidden') ? "☰" : "✕"; }
-
-        // ĐẾM NGƯỢC
-        setInterval(() => {
-            const gap = new Date("June 27, 2026 11:00:00").getTime() - new Date().getTime();
-            document.getElementById("d").innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
-            document.getElementById("h").innerText = Math.floor((gap % (86400000)) / 3600000);
-            document.getElementById("m").innerText = Math.floor((gap % 3600000) / 60000);
-            document.getElementById("s").innerText = Math.floor((gap % 60000) / 1000);
-        }, 1000);
-
-        // NHẠC & RSVP
-        const au = document.getElementById("wedding-music"); const mb = document.getElementById("music-btn");
-        function toggleMusic() { if (au.paused) { au.play(); mb.classList.add("playing"); } else { au.pause(); mb.classList.remove("playing"); } }
-        document.addEventListener('click', () => { if (au.paused) { au.play(); mb.classList.add("playing"); } }, { once: true });
-        const form = document.getElementById('rsvp-form');
-        form.addEventListener('submit', e => {
-            e.preventDefault(); document.getElementById('sb').innerText = "ĐANG GỬI...";
-            fetch('https://script.google.com/macros/s/AKfycbx762lw7Y2DGjzzRG4rLAMhbdNYvzbUwBCYMe-aLszxLpu6oTjCsjXaJg2t1RKd2fosiw/exec', { method: 'POST', body: new FormData(form)})
-            .then(() => { alert("Xác nhận thành công!"); location.reload(); });
-        });
-    </script>
-</body>
-</html>
+                <div style="text-align:left; color:#111; margin-bottom:15px; font-size: 14px;">
+                    <label style="display:block; margin-bottom:10px;"><input type="radio" name="attendance" value="Có" checked> Có, mình sẽ đến</label>
